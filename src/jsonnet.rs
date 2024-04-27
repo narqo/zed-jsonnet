@@ -60,7 +60,7 @@ impl JsonnetExtension {
             .find(|asset| asset.name == asset_name)
             .ok_or_else(|| format!("no asset found matching {:?}", asset_name))?;
 
-        let version_dir = format!("jsonnet-language-server--{}", release.version);
+        let version_dir = format!("jsonnet-language-server-{}", release.version);
         fs::create_dir_all(&version_dir)
             .map_err(|err| format!("failed to create directory '{version_dir}': {err}"))?;
 
@@ -110,7 +110,7 @@ impl zed::Extension for JsonnetExtension {
     ) -> Result<zed::Command> {
         Ok(zed::Command {
             command: self.language_server_binary_path(language_server_id)?,
-            args: vec![],
+            args: vec!["--log-level".to_string(), "info".to_string()],
             env: Default::default(),
         })
     }
