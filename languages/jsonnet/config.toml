@@ -1,0 +1,6 @@
+name = "Jsonnet"
+grammar = "jsonnet"
+path_suffixes = ["jsonnet", "libsonnet"]
+line_comments = ["// "]
+autoclose_before = "}])"
+tab_size = 2

@@ -1,0 +1,11 @@
+id = "jsonnet"
+name = "Jsonnet"
+description = "Jsonnet language support for Zed"
+version = "0.0.1"
+schema_version = 1
+authors = ["Vladimir Varankin <vladimir@varank.in>"]
+repository = "https://github.com/narqo/zed-jsonnet"
+
+[grammars.jsonnet]
+repository = "https://github.com/sourcegraph/tree-sitter-jsonnet"
+commit = "d34615fa12cc1d1cfc1f1f1a80acc9db80ee4596"
