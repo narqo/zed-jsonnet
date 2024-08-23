@@ -1,6 +1,6 @@
 use std::fs;
 use zed::LanguageServerId;
-use zed_extension_api::{self as zed, Result};
+use zed_extension_api::{self as zed, serde_json, settings::LspSettings, Result};
 
 const LSP_GITHUB_REPO: &str = "grafana/jsonnet-language-server";
 
@@ -113,6 +113,30 @@ impl zed::Extension for JsonnetExtension {
             args: vec!["--log-level".to_string(), "info".to_string()],
             env: Default::default(),
         })
+    }
+
+    fn language_server_initialization_options(
+        &mut self,
+        language_server_id: &LanguageServerId,
+        worktree: &zed::Worktree,
+    ) -> Result<Option<serde_json::Value>> {
+        let settings = LspSettings::for_worktree(language_server_id.as_ref(), worktree)
+            .ok()
+            .and_then(|lsp_settings| lsp_settings.initialization_options.clone())
+            .unwrap_or_default();
+        Ok(Some(settings))
+    }
+
+    fn language_server_workspace_configuration(
+        &mut self,
+        language_server_id: &zed::LanguageServerId,
+        worktree: &zed::Worktree,
+    ) -> Result<Option<serde_json::Value>> {
+        let settings = LspSettings::for_worktree(language_server_id.as_ref(), worktree)
+            .ok()
+            .and_then(|lsp_settings| lsp_settings.settings.clone())
+            .unwrap_or_default();
+        Ok(Some(settings))
     }
 }
 
