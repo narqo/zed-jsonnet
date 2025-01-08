@@ -1,7 +1,7 @@
 id = "jsonnet"
 name = "Jsonnet"
 description = "Jsonnet language support for Zed"
-version = "0.2.0"
+version = "0.3.1"
 schema_version = 1
 authors = ["Vladimir Varankin <vladimir@varank.in>"]
 repository = "https://github.com/narqo/zed-jsonnet"
