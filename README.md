@@ -35,6 +35,13 @@ Refer to Zed's "[Developing Extensions][3]" documentation.
 1. Clean up the workspace with `make distclean`.
 2. ...
 
+### New version
+
+```
+% ./scripts/bump-version.sh <version>
+% git commit -m "Release <version>" --all
+```
+
 [1]: https://jsonnet.org/
 [2]: https://zed.dev/
 [3]: https://zed.dev/docs/extensions/developing-extensions
